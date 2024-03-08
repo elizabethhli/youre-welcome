@@ -1,127 +1,16 @@
-<!-- <!DOCTYPE html>
-<html>
-<head>
-    <title>HTML Renderer</title>
-    <style>
-        #output {
-            border: 1px solid #ccc;
-            padding: 10px;
-            margin-top: 10px;
-        }
-    </style>
-</head>
-<body>
-    <h2>HTML Renderer</h2>
-    <textarea id="input" rows="10" cols="50" placeholder="Paste your HTML here" oninput="renderHTML()"></textarea>
-    <div id="output"></div>
-
-    <script>
-        function renderHTML() {
-            var html = document.getElementById('input').value;
-            html = html.replace(/›/g, '>').replace(/‹/g, '<');
-            document.getElementById('output').innerHTML = html;
-        }
-    </script>
-</body>
-</html> 
- -->
-
- <!-- <!DOCTYPE html>
-<html>
-<head>
-    <title>Styled Live HTML Renderer</title>
-    <style>
-        body {
-            display: flex;
-            align-items: flex-start;
-            justify-content: space-between;
-        }
-        #input, #output {
-            width: 48%; /* Adjusted for a bit of spacing between the two */
-            min-height: 200px; /* Ensure both boxes have some initial height */
-        }
-        #input {
-            padding: 10px;
-        }
-        #output {
-            border: 1px solid #ccc;
-            padding: 10px;
-        }
-        textarea {
-            width: 100%;
-            height: 100%;
-            box-sizing: border-box; /* Ensures padding doesn't add to the width */
-        }
-    </style>
-</head>
-<body>
-    <div id="input">
-        <textarea rows="10" cols="50" placeholder="Paste or type your HTML here" oninput="renderHTML()"></textarea>
-    </div>
-    <div id="output"></div>
-
-    <script>
-        function renderHTML() {
-            var html = document.querySelector('#input textarea').value;
-            html = html.replace(/›/g, '>').replace(/‹/g, '<');
-            document.getElementById('output').innerHTML = html;
-        }
-    </script>
-</body>
-</html> -->
-
-<!-- GOOD ONE -->
-<!-- <!DOCTYPE html>
-<html>
-<head>
-    <title>Full-Page Live HTML Renderer</title>
-    <style>
-        html, body {
-            height: 100%;
-            margin: 0;
-        }
-        body {
-            display: grid;
-            grid-template-columns: 1fr 1fr; /* Two equal columns */
-        }
-        #input, #output {
-            height: 100%;
-        }
-        textarea {
-            width: 100%;
-            height: 100%;
-            resize: none; /* Prevents resizing of the textarea */
-            border: none; /* Removes the default border */
-            padding: 10px;
-            box-sizing: border-box; /* Includes padding in the height calculation */
-        }
-        #output {
-            border-left: 1px solid #ccc; /* Adds a border between the input and output */
-            padding: 10px;
-            overflow: auto; /* Adds scrollbars if content overflows */
-        }
-    </style>
-</head>
-<body>
-    <div id="input">
-        <textarea placeholder="Paste or type your HTML here" oninput="renderHTML()"></textarea>
-    </div>
-    <div id="output"></div>
-
-    <script>
-        function renderHTML() {
-            var html = document.querySelector('#input textarea').value;
-            html = html.replace(/›/g, '>').replace(/‹/g, '<');
-            document.getElementById('output').innerHTML = html;
-        }
-    </script>
-</body>
-</html> -->
-
 <!DOCTYPE html>
 <html>
 <head>
     <title>Full-Page Live HTML Renderer</title>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CQRTC9KT4V"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-CQRTC9KT4V');
+    </script>
     <style>
         html, body {
             height: 100%;
