@@ -22,6 +22,7 @@
         }
         #input, #output {
             height: 100%;
+            width: 100%;
         }
         textarea {
             width: 100%;
@@ -42,13 +43,17 @@
     <div id="input">
         <textarea placeholder="Paste or type your HTML here" oninput="renderHTML()"></textarea>
     </div>
-    <div id="output"></div>
+    <!-- <div id="output"></div> -->
+    <!-- <div id="output"> -->
+    <iframe id="output" src="javascript:'';"></iframe>
+    <!-- </div> -->
 
     <script>
         function renderHTML() {
             var html = document.querySelector('#input textarea').value;
             html = html.replace(/›/g, '>').replace(/‹/g, '<');
-            document.getElementById('output').innerHTML = html;
+            var outputFrame = document.getElementById('output');
+            outputFrame.srcdoc = html;
         }
     </script>
 </body>
