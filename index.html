@@ -1,7 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
     <title>Full-Page Live HTML Renderer</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/htmlhint@latest/dist/htmlhint.js"></script>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.32.7/ace.js"></script>
+
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/mode/xml/xml.min.js"></script> For HTML mode -->
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-CQRTC9KT4V"></script>
     <script>
@@ -11,51 +21,31 @@
 
     gtag('config', 'G-CQRTC9KT4V');
     </script>
-    <style>
-        html, body {
-            height: 100%;
-            margin: 0;
-        }
-        body {
-            display: grid;
-            grid-template-rows: 0.5fr 1fr; /* Two equal columns */
-        }
-        #input, #output {
-            height: 100%;
-            width: 100%;
-        }
-        textarea {
-            width: 100%;
-            height: 100%;
-            resize: none; /* Prevents resizing of the textarea */
-            /* border: none; Removes the default border */
-            padding: 10px;
-            box-sizing: border-box; /* Includes padding in the height calculation */
-        }
-        #output {
-            border-left: 1px solid #ccc; /* Adds a border between the input and output */
-            /* padding: 10px; */
-            overflow: auto; /* Adds scrollbars if content overflows */
-        }
-    </style>
 </head>
 <body>
-    <div id="input">
-        <textarea placeholder="Paste or type your HTML here" oninput="renderHTML()"></textarea>
-    </div>
+    <div id="editor"></div>
+    <script>
+        var editor = ace.edit("editor");
+        // editor.setTheme("ace/theme/monokai");
+        editor.session.setMode("ace/mode/html");
+        editor.setOptions({
+            useWorker: false,
+            showLineNumbers: true,
+            showGutter: true
+        });
+
+        // editor.session.setOption("useWorker", false)
+
+        editor.session.on('change', function() {
+            renderHTML();
+        });
+
+    </script>
     <!-- <div id="output"></div> -->
     <!-- <div id="output"> -->
     <iframe id="output" src="javascript:'';"></iframe>
-    <!-- </div> -->
-
-    <script>
-        function renderHTML() {
-            var html = document.querySelector('#input textarea').value;
-            html = html.replace(/›/g, '>').replace(/‹/g, '<');
-            var outputFrame = document.getElementById('output');
-            outputFrame.srcdoc = html;
-        }
-    </script>
+    <!-- <div id="errors" style="color: red;"></div> -->
+    <script src="js/script.js"></script>
 </body>
 </html>
 
