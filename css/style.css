@@ -10,16 +10,7 @@ body {
     height: 100%;
     width: 100%;
 }
-/* textarea {
-    width: 100%;
-    height: 100%;
-    resize: none; /* Prevents resizing of the textarea */
-    /* border: none; Removes the default border */
-    /* padding: 10px; */
-    /* box-sizing: border-box; Includes padding in the height calculation */
-/* } */ 
 #output {
     border-left: 1px solid #ccc; /* Adds a border between the input and output */
-    /* padding: 10px; */
     overflow: auto; /* Adds scrollbars if content overflows */
 }
