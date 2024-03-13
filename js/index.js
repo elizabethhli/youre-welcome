@@ -12,21 +12,55 @@ editor.session.on('change', function() {
 });
 
 function renderHTML() {
+    // var html = editor.getValue();
+    // html = html.replace(/›/g, ">").replace(/‹/g, "<");
+
+    // // Inject a script into the HTML that prevents hash links from navigating.
+    // var script = `<script>
+    //     document.addEventListener('DOMContentLoaded', function() {
+    //         document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+    //             anchor.addEventListener('click', function(e) {
+    //                 e.preventDefault();
+    //                 // Optional: Implement custom behavior here, such as scrolling to a target element.
+    //             });
+    //         });
+    //     });
+    //     </script>`;
+    
+    // // Append the script to the HTML content
+    // html += script;
+
+    // var outputFrame = document.getElementById('output');
+    // outputFrame.srcdoc = html;
+
+    // lintHTML(html);
     var html = editor.getValue();
     html = html.replace(/›/g, ">").replace(/‹/g, "<");
 
-    // Inject a script into the HTML that prevents hash links from navigating.
+    // Enhanced script injection for in-document navigation
     var script = `<script>
         document.addEventListener('DOMContentLoaded', function() {
             document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
                 anchor.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    // Optional: Implement custom behavior here, such as scrolling to a target element.
+                    var href = this.getAttribute('href');
+                    // Check if the href is not just '#' (which would mean top of the page)
+                    if (href.length > 1) {
+                        // Prevent the default anchor link behavior
+                        e.preventDefault();
+                        // Navigate to the specific element within the iframe content
+                        var targetElement = document.querySelector(href);
+                        if (targetElement) {
+                            // Scroll to the target element smoothly
+                            targetElement.scrollIntoView({block: 'start'});
+                        }
+                    } else {
+                        e.preventDefault();
+                    }
                 });
             });
         });
         </script>`;
-    
+
     // Append the script to the HTML content
     html += script;
 
