@@ -1,0 +1,16 @@
+html, body {
+    height: 100%;
+    margin: 0;
+}
+body {
+    display: grid;
+    grid-template-rows: 0.5fr 1fr; /* Two equal columns */
+}
+#editor, #output {
+    height: 100%;
+    width: 100%;
+}
+#output {
+    border-left: 1px solid #ccc; /* Adds a border between the input and output */
+    overflow: auto; /* Adds scrollbars if content overflows */
+}
