@@ -1,0 +1,41 @@
+/* style_JSON.css */
+html, body {
+    height: 100%;
+    margin: 0;
+}
+body {
+    text-align: center;
+    display: flex;
+    flex-direction: column; /* Changes layout to vertical */
+}
+
+#editor, #output {
+    height: 100%;
+    width: 100%;
+}
+
+#editor {
+    border: 2px solid #ccc; /* Adds a light gray border */
+}
+
+.button-container {
+    text-align: center; /* Center-align the content of the container */
+    margin-top: 20px; /* Optional: Adds some space above the button */
+}
+
+.button-container button {
+    width: auto; /* Ensures the button only takes as much width as it needs */
+    display: inline-block; /* Allows the button to respect the text-align center */
+}
+
+
+#output {
+    margin-top: 20px;
+    color: red;
+}
+
+#output td {
+    white-space: pre; /* Ensures all spaces and line breaks in the content are preserved */
+}
+
+ul {list-style-type:none;}
