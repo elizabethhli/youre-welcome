@@ -18,14 +18,13 @@ function lintCSV() {
     }
 
     const rows = input.split('\n');
-    const numColumns = rows[0].split(',').length;
+    const numColumns = rows[0].match(/(".*?"|[^,\n]+|(?<=,|^)(?=,|$))/g).length;
     const errorMessages = [];
     const tableRows = [];
+    const headerRow = [];
 
     rows.forEach((row, index) => {
         const columns = row.match(/(".*?"|[^,\n]+|(?<=,|^)(?=,|$))/g);
-        // /(".*?"|[^",]+|(?<=,)(?=\s*,))/g -- works mostly
-        // /(".*?"|[^,\n]+|(?<=,|^)(?=,|$))/g -- acc works
 
         if (!columns) {
             errorMessages.push(`Error on row ${index + 1}: Row could not be parsed correctly.`);
@@ -33,7 +32,7 @@ function lintCSV() {
         }
 
         // Check for column consistency
-        if (columns.length !== numColumns) {
+        if (index != 0 && numColumns != columns.length) {
             errorMessages.push(`Error on row ${index + 1}: Expected ${numColumns} columns, found ${columns.length}.`);
         }
 
@@ -50,8 +49,13 @@ function lintCSV() {
         });
 
         // Prepare data for table rendering if no errors
-        if (errorMessages.length === 0 && index != 0) {
-            tableRows.push(`<tr>${columns.map(column => `<td>${column}</td>`).join('')}</tr>`);
+        if (errorMessages.length == 0) {
+            if (index == 0) {
+                // Set headerRow
+                headerRow.push(`<tr>${columns.map(column => `<th>${column}</th>`).join('')}</tr>`);
+            } else {
+                tableRows.push(`<tr>${columns.map(column => `<td>${column}</td>`).join('')}</tr>`);
+            }
         }
     });
 
@@ -59,6 +63,7 @@ function lintCSV() {
     if (errorMessages.length > 0) {
         outputDiv.innerHTML = `<div class="alert alert-danger"><ul>${errorMessages.map(msg => `<li>${msg}</li>`).join('')}</ul></div>`;
     } else {
-        outputDiv.innerHTML = `<div class="alert alert-success" role="alert">Valid CSV!</div><table class="table table-bordered"><thead><tr>${rows[0].split(',').map(header => `<th>${header}</th>`).join('')}</tr></thead><tbody>${tableRows.join('')}</tbody></table>`;
+        console.log(headerRow);
+        outputDiv.innerHTML = `<div class="alert alert-success" role="alert">Valid CSV!</div><table class="table table-bordered"><thead><tr>${headerRow.join('')}</tr></thead><tbody>${tableRows.join('')}</tbody></table>`;
     }
 }
