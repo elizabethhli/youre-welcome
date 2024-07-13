@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CSV Linter</title>
+    <title>JSON Linter</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/style_CSV.css">
+    <link rel="stylesheet" href="css/style_JSON.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.32.7/ace.js"></script>
 </head>
 <body>
@@ -20,13 +20,13 @@
                     <a class="nav-link" href="index.html">HTML Renderer</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="JSONlint.html">JSON Linter</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="JSONLlint.html">JSONL Linter</a>
+                    <a class="nav-link" href="#">JSON Linter</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">CSV Linter</a>
+                    <a class="nav-link" href="#">JSONL Linter</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="CSVlint.html">CSV Linter</a>
                 </li>
             </ul>
         </div>
@@ -34,13 +34,13 @@
 
     <div id="editor"></div>
     <div class="button-container">
-        <button onclick="lintCSV()" class="btn btn-primary">Validate CSV</button>
-    </div>    
+        <button onclick="lintJSONL()" class="btn btn-primary">Validate JSON</button>
+    </div>
     
     <!-- <button onclick="lintJSON()" class="btn btn-primary">Validate JSON</button> -->
     <div id="output"></div>
     <!-- <button onclick="lintJSON()">Lint JSON</button>
     <div id="output"></div> -->
 </body>
-<script src="js/script_CSV.js"></script>
+<script src="js/script_JSONL.js"></script>
 </html>
