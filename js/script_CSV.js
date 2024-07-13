@@ -38,7 +38,7 @@ function lintCSV() {
 
         // Check for numeric values formatted with commas
         columns.forEach((column, columnIndex) => {
-            if (/^\$?\d{1,3}(,\d{3})*(\.\d+)?$/.test(column)) {
+            if (/^\$\d{1,3}(,\d{3})*(\.\d+)?$/.test(column)) {
                 errorMessages.push(`Error on row ${index + 1}, column ${columnIndex + 1}: Numeric value '${column}' should not contain commas or should be quoted.`);
             }
 
